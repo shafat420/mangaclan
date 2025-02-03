@@ -41,6 +41,10 @@ export default function Page() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [params.chapter]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
     };
@@ -65,7 +69,7 @@ export default function Page() {
         const result = await response.json();
         setData(result);
       } catch (error) {
-        console.error('Error fetching chapter:', error);
+        // Removed console.error
       } finally {
         setLoading(false);
       }
@@ -242,7 +246,6 @@ export default function Page() {
               className="w-full h-auto block"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-red-900/30 pointer-events-none" />
           </div>
         ))}
       </div>
