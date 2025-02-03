@@ -10,6 +10,7 @@
     "export": "next build"
   },
   "dependencies": {
+    "@aptabase/react": "^0.3.5",
     "@netlify/plugin-nextjs": "^5.9.3",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.1",
