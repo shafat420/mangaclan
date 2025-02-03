@@ -4,6 +4,9 @@ import Navbar from '@/components/Navbar';
 import { Metadata } from 'next';
 import { BookmarkProvider } from '@/contexts/BookmarkContext';
 import NextTopLoader from 'nextjs-toploader';
+import { AptabaseProvider } from '@aptabase/react';
+import { AnalyticsWrapper } from './components/AnalyticsWrapper';
+import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -125,25 +128,29 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body className="min-h-screen bg-gray-900">
-        <NextTopLoader 
-          color="#ef4444"
-          initialPosition={0.08}
-          crawlSpeed={200}
-          height={3}
-          crawl={true}
-          showSpinner={false}
-          easing="ease"
-          speed={200}
-          shadow="0 0 10px #ef4444,0 0 5px #ef4444"
-        />
-        <BookmarkProvider>
-          <Navbar />
-          <div className="flex flex-col min-h-screen">
-            <main className="flex-grow">
-              {children}
-            </main>
-          </div>
-        </BookmarkProvider>
+        <AptabaseProvider appKey="A-US-7448288270">
+          <NextTopLoader 
+            color="#ef4444"
+            initialPosition={0.08}
+            crawlSpeed={200}
+            height={3}
+            crawl={true}
+            showSpinner={false}
+            easing="ease"
+            speed={200}
+            shadow="0 0 10px #ef4444,0 0 5px #ef4444"
+          />
+          <BookmarkProvider>
+            <AnalyticsWrapper>
+              <Navbar />
+              <div className="flex flex-col min-h-screen">
+                <main className="flex-grow">
+                  {children}
+                </main>
+              </div>
+            </AnalyticsWrapper>
+          </BookmarkProvider>
+        </AptabaseProvider>
       </body>
     </html>
   );
