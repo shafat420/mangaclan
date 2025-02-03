@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import { Metadata } from 'next';
 import { BookmarkProvider } from '@/contexts/BookmarkContext';
 import NextTopLoader from 'nextjs-toploader';
-import { AnalyticsWrapper } from './components/AnalyticsWrapper';
+import { Analytics } from '@vercel/analytics/react';
 import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -139,15 +139,14 @@ export default function RootLayout({
           shadow="0 0 10px #ef4444,0 0 5px #ef4444"
         />
         <BookmarkProvider>
-          <AnalyticsWrapper>
-            <Navbar />
-            <div className="flex flex-col min-h-screen">
-              <main className="flex-grow">
-                {children}
-              </main>
-            </div>
-          </AnalyticsWrapper>
+          <Navbar />
+          <div className="flex flex-col min-h-screen">
+            <main className="flex-grow">
+              {children}
+            </main>
+          </div>
         </BookmarkProvider>
+        <Analytics />
       </body>
     </html>
   );
